@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="scroll-smooth scroll-p-20" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ICONOS / FUENTES-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    <!-- JS / LIBRERÍAS -->
+    <script src="js/cards.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script src="js/multilenguaje.js"></script>
+    <script src="js/carrousel.js"></script>
+    
+</head>
+<body style="font-family: 'Poppins', sans-serif;">
+    
+    <!-- <nav class="fixed top-0 w-screen z-20 bg-gradient-to-r from-yellow-600 to-yellow-300"  >
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-center mx-auto p-2">
+            <div>
+                <img src="recursos/logo.png" alt="LOGO">
+            </div>
+        </div>
+    </nav> -->
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-l from-yellow-600 to-yellow-300">
+        <div class="container mx-auto flex flex-wrap items-center justify-between p-4 ">
+            <div>
+                <a href="#"><img class="h-14 md:h-16 lg:h-20" src="recursos/logo.png" alt="LOGO"></a>
+            </div>
+            <div class="flex items-center md:order-2">
+                <button type="button" data-dropdown-toggle="language-dropdown-menu" class="flex items-center font-medium justify-center px-4 py-2 rounded-lg cursor-pointer text-white"> 
+                    <img src="recursos/flecha.png" alt="">
+                    <span id="current-language">Español</span>
+                </button>
+                <!-- Dropdown -->
+                <div class="z-50 hidden my-4 text-base list-none bg-gray-600 divide-y divide-gray-100 rounded-lg shadow" id="language-dropdown-menu">
+                  <ul class="py-2 font-medium" role="none">
+                    <li>
+                      <a href="#" onclick="changeLanguage('Español')" data-language="es" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 hover:text-black" role="menuitem">
+                        <div class="inline-flex items-center">
+                            <svg class="h-3.5 w-3.5 rounded-full mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" id="flag-icon-español" viewBox="0 0 512 512"><path fill="#b81414" d="M0 341.3h512V512H0z"/><path fill="#b81414" d="M0 0h512v170.7H0z"/><path fill="#f7d547" d="M0 170.7h512v170.6H0z"/></svg>
+                            Español
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="changeLanguage('English')" data-language="en" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 hover:text-black" role="menuitem">
+                            <div class="inline-flex items-center">
+                              <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full mr-2" xmlns="http://www.w3.org/2000/svg" id="flag-icon-english" viewBox="0 0 512 512"><g fill-rule="evenodd"><g stroke-width="1pt"><path fill="#bd3d44" d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/><path fill="#fff" d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z" transform="scale(3.9385)"/></g><path fill="#192f5d" d="M0 0h98.8v70H0z" transform="scale(3.9385)"/><path fill="#fff" d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z" transform="scale(3.9385)"/></g></svg>              
+                              English
+                            </div>
+                          </a>
+                    </li>
+                    <li>
+                      <a href="#" onclick="changeLanguage('Portugues')" data-language="pt" class="block px-4 py-2 text-sm text-white hover:bg-gray-100 hover:text-black" role="menuitem">
+                        <div class="inline-flex items-center">
+                          <svg class="h-3.5 w-3.5 rounded-full mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" id="flag-icon-portugues" viewBox="0 0 512 512"><g fill-rule="evenodd" stroke-width="1pt"><path fill="#ce2b37" d="M0 0h512v512H0z"/><path fill="#009246" d="M0 0h170.7v512H0z"/><path fill="#ce2b37" d="M341.3 0H512v512H341.3z"/></g></svg>              
+                          Portugues
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden" aria-controls="navbar-cta" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                <ul class="flex flex-col font-semibold p-4 bg-gray-900 rounded-lg md:items-center md:bg-transparent md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0">
+                    <li>
+                    <a href="#inicio" id="n1" class="block py-2 pl-3 pr-4 rounded-lg text-white hover:text-black hover:bg-white md:hover:bg-transparent md:hover:text-white md:rounded-none md:hover:border-b-2 md:border-white md:p-0" aria-current="page">Inicio</a>
+                    </li>
+                    <li>
+                    <a href="#nosotros" id="n2" class="block py-2 pl-3 pr-4 rounded-lg text-white hover:text-black hover:bg-white md:hover:bg-transparent md:hover:text-white md:rounded-none md:hover:border-b-2 md:border-white md:p-0">Nosotros</a>
+                    </li>
+                    <li>
+                    <a href="#apuestas" id="n3" class="block py-2 pl-3 pr-4 rounded-lg text-white hover:text-black hover:bg-white md:hover:bg-transparent md:hover:text-white md:rounded-none md:hover:border-b-2 md:border-white md:p-0">Apuestas</a>
+                    </li>
+                    <li>
+                    <a href="#testimonios" id="n4" class="block py-2 pl-3 pr-4 rounded-lg text-white hover:text-black hover:bg-white md:hover:bg-transparent md:hover:text-white md:rounded-none md:hover:border-b-2 md:border-white md:p-0">Testimonios</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+
+    <div>
+        <a href="https://t.me/EsoBradPicks" target="_blank" class="bg-white rounded-full w-12 h-12 flex items-center justify-center focus:ring ring focus:ring-blue-300 fixed bottom-4 right-4 z-40">
+            <i class="fa-brands fa-telegram fa-2xl" style="color: #29A9EA"></i>
+        </a>
+    </div>
+
+    <section id="inicio" class="h-screen bg-[url('recursos/fondo1.png')] pt-28 grid lg:grid-cols-2" style="font-family: 'Permanent Marker', cursive;" >
+        <div class="flex justify-center items-center px-20 lg:px-0 lg:pl-20">
+            <p class="text-white text-5xl text-center" id="slogan">¡ÚNETE AL MEJOR GRUPO DE APUESTAS Y GANA CON NOSOTROS!</p>
+        </div>
+        <div class="hidden lg:flex justify-center items-center pr-20">
+            <img src="recursos/img-inicio.png" class="hover:scale-105 transition-transform" alt="">
+        </div>
+        <div class="flex justify-center items-center absolute bottom-0 w-full">
+            <div class="mb-5">
+                <a href="#nosotros"><i class="fa-solid fa-angles-down fa-beat-fade text-3xl text-blue-950 dark:text-white"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20" id="nosotros">
+        <article class="md:flex">
+            <div class="w-full md:w-1/2">
+                <div id="swiper-cards" class="swiper w-52 h-72 sm:w-80 sm:h-96 my-8">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide rounded-lg shadow-xl">
+                        <img class="w-full h-full object-cover" src="recursos/messi.jpg">
+                    </div>
+                
+                    <div class="swiper-slide rounded-lg shadow-xl">
+                        <img class="w-full h-full object-cover" src="recursos/cr7.webp">
+                    </div>
+                
+                    <div class="swiper-slide rounded-lg shadow-xl">
+                        <img class="w-full h-full object-cover" src="recursos/haaland.webp">
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 py-10 px-10 text-center">
+                <div class="lg:mr-16 xl:mr-24 space-y-6">
+                    <h6 id="pregunta" class="text-3xl text-yellow-600 font-bold" style="font-family: 'Permanent Marker', cursive;">
+                        ¿Por qué elegirnos?
+                    </h6>
+                    <p id="t1">
+                        En nuestra plataforma de apuestas online, garantizamos emoción y ganancias a lo grande. ¿Por qué escogernos? Porque somos tu mejor jugada para aciertos y victorias. Con una amplia gama de opciones, desde deportes hasta juegos de casino, cada apuesta es una oportunidad para ganar en grande.
+                    </p>
+                    <p id="t2">
+                        Nuestro grupo se destaca por ofrecer cuotas irresistibles y promociones exclusivas que maximizan tus ganancias. Únete a nosotros y descubre el lugar donde cada apuesta cuenta y cada victoria es aún más emocionante.¡Apuesta por el éxito con nosotros!
+                    </p>
+                    <div class="flex gap-3 justify-center font-semibold">
+                        <p id="h1" class="hover:text-yellow-600 transition-colors duration-500 cursor-pointer">#EsoBradPicks</p>
+                        <p id="h2" class="hover:text-yellow-600 transition-colors duration-500 cursor-pointer">#UneteAEsoBrad</p>
+                        <p id="h3" class="hover:text-yellow-600 transition-colors duration-500 cursor-pointer">#EsoBradVIP</p>
+                    </div>
+
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <div class="py-20 bg-gray-900">
+        <p class="text-center text-3xl text-yellow-600" style="font-family: 'Permanent Marker', cursive;">NUESTROS PICKS DEL DÍA</p>
+        <div class="swiper mySwiper2 mt-10">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide relative border-4 rounded-3xl bg-white max-w-xs">
+                    <img src="recursos/EsoBrad1.jpg" alt="Pick 1" class="w-full h-auto object-cover rounded-3xl">
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl bg-white max-w-xs">
+                    <img src="recursos/EsoBrad2.jpg" alt="Pick 2" class="w-full h-auto object-cover rounded-3xl">
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl bg-white max-w-xs">
+                    <img src="recursos/EsoBrad3.jpg" alt="Pick 3" class="w-full h-auto object-cover rounded-3xl">
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl bg-white max-w-xs">
+                    <img src="recursos/EsoBrad4.jpg" alt="Pick 4" class="w-full h-auto object-cover rounded-3xl">
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl bg-white max-w-xs">
+                    <img src="recursos/EsoBrad5.jpg" alt="Pick 5" class="w-full h-auto object-cover rounded-3xl">
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl bg-white max-w-xs">
+                    <img src="recursos/EsoBrad6.jpg" alt="Pick 6" class="w-full h-auto object-cover rounded-3xl">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="contacto" class="py-20 transition-colors duration-500 bg-white p-10">
+        <article class="lg:flex items-center p-10">
+            <div class="hidden lg:flex">
+                <ul class="px-10">
+                    <li class="p-3 text-center">
+                        <div class="flex justify-center text-yellow-600">
+                            <i class="fa-brands fa-telegram fa-2xl" style="color: #ca8a04;"></i>                         
+                        </div> 
+                        <p class="mt-4 font-semibold" id="c1">Telegram</p>
+                        <div class="contacto-txt-gray transition duration-500 text-sm text-gray-500">
+                            <p id="c1.1">@EsoBradPicks</p>
+                            <p id="c1.2">t.me/EsoBradPicks</p>
+                        </div>                    
+                    </li>
+                    <li class="p-3 text-center">
+                        <div class="flex justify-center text-yellow-600">
+                            <i class="fa-brands fa-whatsapp fa-2xl" style="color: #ca8a04;"></i>                            
+                        </div> 
+                        <p class="mt-4 font-semibold" id="c2">WhatsApp</p>
+                        <div class="contacto-txt-gray transition duration-500 text-sm text-gray-500">
+                            <p id="c2.1">+0000 1234 5678</p>
+                            <p id="c2.2">+0000 4321 8765</p>
+                        </div>                    
+                    </li>
+                </ul>
+            </div>
+            <div class="lg:px-20 space-y-6 lg:border-l-2 border-yellow-600">
+                <div>
+                    <p class="text-xl font-bold text-yellow-600" id="fti">DÉJANOS TU CONTACTO</p>
+                    <p id="fte">Completa el formulario a continuación y se parte de este grupo exclusivo. Estamos ansiosos por comenzar este viaje contigo. ¡Gracias por confiar en nosotros!</p>
+                </div>
+                <div class="flex relative">
+                    <input id="usuario" type="text" class="contacto-input py-1 w-full border-b focus:outline-none focus:border-yellow-600 focus:border-b-2 peer transition-colors duration-500">
+                    <label for="usuario" class="text-gray-500 absolute left-0 top-1 cursor-text peer-focus:text-xs peer-focus:text-yellow-600 peer-focus:-top-4 font-semibold transition-all duration-500" id="l1">Ingresa tu nombre</label>
+                </div>
+                <div class="flex relative">
+                    <input id="correo" type="text" class="contacto-input py-1 w-full border-b focus:outline-none focus:border-yellow-600 focus:border-b-2 peer transition-colors duration-500">
+                    <label for="correo" class="text-gray-500 absolute left-0 top-1 cursor-text peer-focus:text-xs peer-focus:text-yellow-600 peer-focus:-top-4 font-semibold transition-all duration-500" id="l2">Ingresa tu correo</label>
+                </div>
+                <div class="flex relative">
+                    <input id="telefono" type="text" class="contacto-input py-1 w-full border-b focus:outline-none focus:border-yellow-600 focus:border-b-2 peer transition-colors duration-500">
+                    <label for="telefono" class="text-gray-500 absolute left-0 top-1 cursor-text peer-focus:text-xs peer-focus:text-yellow-600 peer-focus:-top-4 font-semibold transition-all duration-500" id="l3">Ingresa tu teléfono</label>
+                </div>
+                <div class="space-y-4">
+                    <button class="py-1 px-4 bg-black font-semibold text-white rounded-xl" id="lb">Enviar</button>
+                </div>
+            </div>
+            <div class="lg:hidden">
+                <ul class="py-6 flex flex-wrap items-center">
+                    <li class="p-3 text-center grow">
+                        <div>
+                            <i class="fa-brands fa-telegram fa-2xl" style="color: #ca8a04;"></i>                          
+                        </div> 
+                        <p class="font-semibold">Telegram</p>
+                        <div class="text-sm text-gray-500">
+                            <p>@EsoBradPicks</p>
+                            <p>t.me/EsoBradPicks</p>
+                        </div>                    
+                    </li>
+                    <li class="p-3 text-center grow">
+                        <div>
+                        <i class="fa-brands fa-whatsapp fa-2xl" style="color: #ca8a04;"></i>                            
+                        </div> 
+                        <p class="font-semibold">WhatssApp</p>
+                        <div class="text-sm text-gray-500">
+                            <p>+0000 1234 5678</p>
+                            <p>+0000 4321 8765</p>
+                        </div>                    
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </section>
+
+    <div class="py-20 bg-gray-900">
+        <p class="text-center text-3xl text-yellow-600" style="font-family: 'Permanent Marker', cursive;">TESTIMONIOS</p>
+        <div class="swiper mySwiper1 mt-10">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide relative border-4 rounded-3xl h-80 w-80 bg-white">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-3">
+                        <img class="mx-auto rounded-full w-40 h-40 shadow-lg" src="recursos/Arnie.jpeg" alt="Arniecito">
+                    </div>
+                    <div class="mt-20 mb-4 px-8 py-24 text-center space-y-2">
+                        <div>
+                            <p class="font-bold">Arnie Lover</p>
+                            <p class="text-gray-400">arniegtrujillo@hotmail.com</p>
+                        </div>
+                        <p>Me encanta apostar en Eso Brad, gracias a ello pude salir con Martin.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl h-80 w-80 bg-white">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-3">
+                        <div class="rounded-full border-4 w-40 h-40 bg-blue-700 flex justify-center items-center text-7xl text-white">
+                            <img class="mx-auto rounded-full w-40 h-40 shadow-lg" src="recursos/molina2.jpg" alt="molina">
+                        </div>
+                    </div>
+                    <div class="mt-20 mb-4 px-8 py-24 text-center space-y-2">
+                        <div>
+                            <p class="font-bold">Diego Molina</p>
+                            <p class="text-gray-400">jmolina@unitru.edu.pe</p>
+                        </div>
+                        <p>Gracias a Eso Brad me hice millonario.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl h-80 w-80 bg-white">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-3">
+                        <div class="rounded-full border-4 w-40 h-40 bg-blue-700 flex justify-center items-center text-7xl text-white">
+                            <img class="mx-auto rounded-full w-40 h-40 shadow-lg" src="recursos/Marcelino.jpg" alt="marcelino">
+                        </div>
+                    </div>
+                    <div class="mt-20 mb-4 px-8 py-24 text-center space-y-2">
+                        <div>
+                            <p class="font-bold">Marcelino Torres</p>
+                            <p class="text-gray-400">mtorresv@unitru.edu.pe</p>
+                        </div>
+                        <p>Los picks de Eso Brad han hecho que gane mi Alianza Lima.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl h-80 w-80 bg-white">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-3">
+                        <div class="rounded-full border-4 w-40 h-40 bg-blue-700 flex justify-center items-center text-7xl text-white">
+                            <img class="mx-auto rounded-full w-40 h-40 shadow-lg" src="recursos/Rodro.jpg" alt="rodro">
+                        </div>
+                    </div>
+                    <div class="mt-20 mb-4 px-8 py-24 text-center space-y-2">
+                        <div>
+                            <p class="font-bold">Rodrigo Aranda</p>
+                            <p class="text-gray-400">rarandaq@unitru.edu.pe</p>
+                        </div>
+                        <p>Eso Brad es una buena opción para las fijas, lo recomiendo.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide relative border-4 rounded-3xl h-80 w-80 bg-white">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-3">
+                        <div class="rounded-full border-4 w-40 h-40 bg-red-700 flex justify-center items-center text-7xl text-white">
+                            <img class="mx-auto rounded-full w-40 h-40 shadow-lg" src="recursos/Butron.jpg" alt="raf">
+                        </div>
+                    </div>
+                    <div class="mt-20 mb-4 px-8 py-24 text-center space-y-2">
+                        <div>
+                            <p class="font-bold">Rafael Bohuytron</p>
+                            <p class="text-gray-400">raf(xd)@upn.edu.pe</p>
+                        </div>
+                        <p>Más Eso Brad y menos antifijas, qué buenas fijas por Dios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer id="footer" class="grid grid-cols-2 lg:grid-cols-3 lg:px-20 pt-10 bg-black gap-7 text-white">
+
+        <div class="flex flex-col md:items-center text-center">
+            <a href="#" class="font-bold" id="f1">INICIO</a>
+            <a href="#" class="font-bold" id="f2">CONTACTO</a>
+            <a href="#" class="font-bold" id="f3">PRIVACIDAD</a>
+            </div>
+        </div>
+        <div class="hidden lg:flex justify-center items-center justify-center" style="font-family: 'Permanent Marker', cursive;">
+            <p class="hover:text-yellow-600 text-xl transition-colors duration-500 cursor-pointer">ESO BRAD PICKS</p>
+        </div>
+        <div class="flex flex-col md:items-center text-center">
+            <a href="#" class="font-bold" id="f4">APUESTAS</a>
+            <a href="#" class="font-bold" id="f5">CASAS DE APUESTAS</a>
+            <a href="#" class="font-bold" id="f6">TESTIMONIOS</a>
+        </div>
+        <div class="flex col-span-3 m-4 justify-center gap-10">
+            <a href="#"><i class="fa-brands fa-facebook fa-xl " style="color: white;"></i></a> 
+            <a href="#"><i class="fa-brands fa-instagram fa-xl" style="color: white;"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter fa-xl" style="color: white;"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube fa-xl" style="color: white;"></i></a>
+        </div>
+        <p class="text-center col-span-3">Copyright © 2023. All rights reserved.</p>
+    </footer>
+</body>
+</html>
